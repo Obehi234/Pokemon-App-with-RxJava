@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Week 7- Get Pokemon</string>
+    <string name="get">GET</string>
+    <string name="search_text_pikachu">E.g. Pikachu</string>
+    <string name="stats_header">Stats</string>
+    <string name="moves_header">Moves</string>
+    <string name="abilities_header">Abilities</string>
+    <string name="sample_text">Sample Text</string>
+    <string name="number_format">#001</string>
+    <string name="move_name">Sample Text</string>
+    <string name="pokemon_name">Name</string>
+    <string name="pokemon_image_description">Pokemon Image</string>
+    <string name="pokemon_icon">Pokemon Icon</string>
+</resources>
