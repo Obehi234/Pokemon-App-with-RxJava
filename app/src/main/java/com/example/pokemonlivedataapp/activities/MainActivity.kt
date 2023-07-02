@@ -1,11 +1,13 @@
-package com.example.pokemonlivedataapp
+package com.example.pokemonlivedataapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pokemonlivedataapp.R
 import com.example.pokemonlivedataapp.adapter.PokemonAdapter
 import com.example.pokemonlivedataapp.repository.PokemonRepository
 
@@ -21,7 +23,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         progressBar = findViewById(R.id.progressBar)
 
-        pokemonAdapter = PokemonAdapter(emptyList())
+        pokemonAdapter = PokemonAdapter(emptyList()) {clickedPokemon ->
+            val intent = Intent(this,NewPokemonActivity::class.java)
+            intent.putExtra("pokemonName", clickedPokemon.name)
+            startActivity(intent)
+
+        }
         recyclerView.adapter = pokemonAdapter
 
         showProgressbar()

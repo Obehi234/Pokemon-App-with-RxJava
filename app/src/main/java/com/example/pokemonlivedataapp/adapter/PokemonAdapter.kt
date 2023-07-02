@@ -9,15 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.pokemonlivedataapp.R
+import com.example.pokemonlivedataapp.model.PokemonResponse
+import com.example.pokemonlivedataapp.model.Result
 
-class PokemonAdapter(var pokemonList: List<com.example.pokemonlivedataapp.model.Result>):RecyclerView.Adapter<PokemonAdapter.ViewHolder>()  {
+class PokemonAdapter(
+    private var pokemonList: List<Result>,
+    private val onItemClick: (Result)-> Unit):RecyclerView.Adapter<PokemonAdapter.ViewHolder>()  {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val pokemonImage: ImageView = itemView.findViewById(R.id.move_image)
         val pokemonName: TextView = itemView.findViewById(R.id.move_name)
         val pokemonNumber: TextView = itemView.findViewById(R.id.pokemonNumber)
 
-        fun bind(pokemon: com.example.pokemonlivedataapp.model.Result) {
+        fun bind(pokemon: Result) {
             val context = itemView.context
             val url = pokemon.url
             val imageNo = url.split("https://pokeapi.co/api/v2/pokemon/")[1].split("/")[0]
@@ -32,6 +36,18 @@ class PokemonAdapter(var pokemonList: List<com.example.pokemonlivedataapp.model.
             val formattedNumber = String.format("#%03d", number)
             pokemonNumber.text = formattedNumber
         }
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if(position != RecyclerView.NO_POSITION) {
+                    val clickedPokemon = pokemonList[position]
+                    onItemClick(clickedPokemon)
+                }
+            }
+        }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
