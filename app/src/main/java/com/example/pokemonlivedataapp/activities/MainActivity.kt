@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         pokemonAdapter = PokemonAdapter(emptyList()) {clickedPokemon ->
             val intent = Intent(this,NewPokemonActivity::class.java)
             intent.putExtra("pokemonName", clickedPokemon.name)
+            //intent.putExtra("pokemonNumber", c)
             startActivity(intent)
 
         }

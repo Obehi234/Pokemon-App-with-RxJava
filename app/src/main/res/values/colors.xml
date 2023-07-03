@@ -10,4 +10,6 @@
         <color name="white">#FFFFFFFF</color>
         <color name="text_grey">#575151</color>
         <color name="bg_grey">#F8F9FA</color>
+        <color name="bg_deets">#1BB5A2</color>
+        <color name="bg_pill">#22D1BB</color>
     </resources>

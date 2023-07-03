@@ -4,15 +4,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_700"
     tools:context=".activities.NewPokemonActivity">
 
+
     <TextView
+        android:id="@+id/pokemonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/margin_20dp"
+        android:layout_marginTop="@dimen/margin_70dp"
+        android:fontFamily="sans-serif"
+        android:text="Pokemon Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_36sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <TextView
+        android:id="@+id/pillTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_20dp"
+        android:layout_marginTop="@dimen/padding_15dp"
+        android:background="@drawable/pill_bg"
+        android:padding="8dp"
+        android:text="Your text"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pokemonName" />-->
+
+   <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexboxLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pokemonName"/>
+
+
+    <TextView
+        android:id="@+id/pokemonNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_20dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/pokemonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/pokemonImage"
+        android:layout_width="@dimen/width_250dp"
+        android:layout_height="@dimen/height_200dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:src="@drawable/pokemon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Pokemon Deets" />
+        app:layout_constraintTop_toBottomOf="@id/flexboxLayout" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/margin_20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pokemonImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="-14dp"
+        app:cardElevation="@dimen/margin_10dp"
+        app:cardCornerRadius="@dimen/margin_35dp"
+        app:cardBackgroundColor="@color/white"
+        android:padding="@dimen/margin_10dp">
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <androidx.viewpager2.widget.ViewPager2
+               android:id="@+id/card_view_pager"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginEnd="@dimen/margin_20dp"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
+
+           <com.google.android.material.tabs.TabLayout
+               android:id="@+id/tabLayout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:tabMode="fixed"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/card_view_pager"/>
+
+           <androidx.fragment.app.FragmentContainerView
+               android:id="@+id/fragment_container"
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:background="@color/black"
+               app:layout_constraintTop_toBottomOf="@id/tabLayout"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintBottom_toBottomOf="parent"
+               android:layout_marginBottom="@dimen/margin_15dp"/>
+
+
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
