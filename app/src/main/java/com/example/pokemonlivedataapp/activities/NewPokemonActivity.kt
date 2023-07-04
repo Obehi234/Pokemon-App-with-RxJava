@@ -29,10 +29,10 @@ class NewPokemonActivity : AppCompatActivity() {
     private lateinit var pokemonName: TextView
     private lateinit var pokemonNumber : TextView
 
-    private  val abilityFragment = AbilityFragment()
+    private var abilityFragment = AbilityFragment()
     private val aboutFragment = AboutFragment()
-    private  val movesFragment = MovesFragment()
-    private val statsFragment = StatsFragment()
+    private var movesFragment = MovesFragment()
+    private var statsFragment = StatsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +58,9 @@ class NewPokemonActivity : AppCompatActivity() {
 
         if (selectedPokemonName != null) {
             fetchPokemonDetails(selectedPokemonName)
+            abilityFragment = AbilityFragment.newInstance(selectedPokemonName)
+            movesFragment = MovesFragment.newInstance(selectedPokemonName)
+            statsFragment = StatsFragment.newInstance(selectedPokemonName)
         }
 
         pokemonName.text = selectedPokemonName

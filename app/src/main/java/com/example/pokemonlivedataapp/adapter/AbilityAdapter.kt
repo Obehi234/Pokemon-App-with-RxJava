@@ -30,4 +30,10 @@ RecyclerView.Adapter<AbilityAdapter.ViewHolder>(){
     }
 
     override fun getItemCount(): Int = abilityList.size
+    fun updateData(newList: List<Ability>) {
+        abilityList = newList
+        notifyDataSetChanged()
+
+    }
+
 }

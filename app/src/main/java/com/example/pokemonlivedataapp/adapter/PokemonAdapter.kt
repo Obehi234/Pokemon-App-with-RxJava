@@ -66,7 +66,7 @@ class PokemonAdapter(
 
     override fun getItemCount(): Int= pokemonList.size
 
-    fun updateData(newList: List<com.example.pokemonlivedataapp.model.Result>) {
+    fun updateData(newList: List<Result>) {
         pokemonList = newList
         notifyDataSetChanged()
 

@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pokemonlivedataapp.R
 import com.example.pokemonlivedataapp.model.details.Form
-import com.example.pokemonlivedataapp.model.details.PokemonDetails
 
-class FormsRecyclerAdapter(private val formsList: List<Form>):
+class FormsRecyclerAdapter(private var formsList: List<Form>):
 RecyclerView.Adapter<FormsRecyclerAdapter.ViewHolder>(){
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -41,4 +40,10 @@ RecyclerView.Adapter<FormsRecyclerAdapter.ViewHolder>(){
     }
 
     override fun getItemCount(): Int  = formsList.size
+
+    fun updateData(newList: List<Form>) {
+        formsList = newList
+        notifyDataSetChanged()
+
+    }
 }

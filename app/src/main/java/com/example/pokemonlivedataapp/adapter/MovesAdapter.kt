@@ -2,13 +2,13 @@ package com.example.pokemonlivedataapp.adapter
 
 import com.example.pokemonlivedataapp.R
 import com.example.pokemonlivedataapp.model.details.Move
-
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+
 
 class MovesAdapter(var moveList: List<Move>) : RecyclerView.Adapter<MovesAdapter.ViewHolder>()  {
     class ViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -38,4 +38,10 @@ class MovesAdapter(var moveList: List<Move>) : RecyclerView.Adapter<MovesAdapter
     }
 
     override fun getItemCount(): Int = moveList.size
+
+    fun updateData(newList: List<Move>) {
+        moveList = newList
+        notifyDataSetChanged()
+
+    }
 }

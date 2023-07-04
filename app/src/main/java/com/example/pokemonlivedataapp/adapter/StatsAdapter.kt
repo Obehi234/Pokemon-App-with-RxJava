@@ -30,4 +30,10 @@ RecyclerView.Adapter<StatsAdapter.StatsViewHolder>(){
     }
 
     override fun getItemCount(): Int = statsList.size
+
+    fun updateData(newList: List<Stat>) {
+        statsList = newList
+        notifyDataSetChanged()
+
+    }
 }

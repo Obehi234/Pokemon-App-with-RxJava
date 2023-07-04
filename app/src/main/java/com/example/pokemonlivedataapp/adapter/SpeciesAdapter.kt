@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonlivedataapp.R
 import com.example.pokemonlivedataapp.model.details.Species
 
-class SpeciesAdapter(val speciesList : List<Species>):
+class SpeciesAdapter(var speciesList : List<Species>):
     RecyclerView.Adapter<SpeciesAdapter.ViewHolder>() {
 
         inner class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,8 +18,6 @@ class SpeciesAdapter(val speciesList : List<Species>):
                 speciesName.text = species.name
             }
         }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context = parent.context
@@ -33,4 +31,10 @@ class SpeciesAdapter(val speciesList : List<Species>):
     }
 
     override fun getItemCount(): Int = speciesList.size
+
+    fun updateData(newList: List<Species>) {
+        speciesList = newList
+        notifyDataSetChanged()
+
+    }
 }
