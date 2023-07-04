@@ -34,7 +34,10 @@ class AboutFragment : Fragment() {
 
         formsRecyclerView = rootView.findViewById(R.id.rvForms)
         speciesRecyclerView = rootView.findViewById(R.id.rvSpecies)
+        return rootView
+    }
 
+    fun setData(formsList: List<Form>, speciesList: List<Species>) {
         formsAdapter = FormsRecyclerAdapter(formsList)
         speciesAdapter = SpeciesAdapter(speciesList)
 
@@ -44,13 +47,10 @@ class AboutFragment : Fragment() {
         formsRecyclerView.adapter = formsAdapter
         speciesRecyclerView.adapter = speciesAdapter
 
-        return rootView
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
     }
+
+
 
 
 

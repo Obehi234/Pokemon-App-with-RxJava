@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MovesAdapter(val moveList: List<Move>) : RecyclerView.Adapter<MovesAdapter.ViewHolder>()  {
+class MovesAdapter(var moveList: List<Move>) : RecyclerView.Adapter<MovesAdapter.ViewHolder>()  {
     class ViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView){
         val moveName: TextView = itemView.findViewById(R.id.formName)
 

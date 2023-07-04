@@ -1,5 +1,6 @@
 package com.example.pokemonlivedataapp.activities
 
+
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,21 +15,25 @@ import com.example.pokemonlivedataapp.fragment.MovesFragment
 import com.example.pokemonlivedataapp.fragment.StatsFragment
 import com.example.pokemonlivedataapp.model.details.PokemonDetails
 import com.example.pokemonlivedataapp.repository.PokemonRepository
-import com.example.pokemonlivedataapp.viewpager.MyPagerAdapter
-import com.google.android.flexbox.FlexboxLayout
+import com.example.pokemonlivedataapp.viewpager.MyViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import io.reactivex.disposables.CompositeDisposable
 
+
 class NewPokemonActivity : AppCompatActivity() {
     private val compositeDisposable =  CompositeDisposable()
-    private lateinit var flexboxLayout :FlexboxLayout
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
     private lateinit var imageView: ImageView
     private lateinit var pokemonName: TextView
     private lateinit var pokemonNumber : TextView
-    val adapter = MyPagerAdapter(this)
+
+    private  val abilityFragment = AbilityFragment()
+    private val aboutFragment = AboutFragment()
+    private  val movesFragment = MovesFragment()
+    private val statsFragment = StatsFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_pokemon)
@@ -36,19 +41,18 @@ class NewPokemonActivity : AppCompatActivity() {
         pokemonName = findViewById(R.id.pokemonName)
         imageView= findViewById(R.id.pokemonImage)
         pokemonNumber = findViewById(R.id.pokemonNumber)
-
-        flexboxLayout = findViewById(R.id.flexboxLayout)
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.card_view_pager)
 
-        val ability = AbilityFragment()
-        val aboutFragment = AboutFragment()
-        val moves = MovesFragment()
-        val stats = StatsFragment()
-        adapter.addFragment(ability)
-        adapter.addFragment(aboutFragment)
-        adapter.addFragment(moves)
-        adapter.addFragment(stats)
+
+
+        val pagerAdapter = MyViewPagerAdapter(this)
+        pagerAdapter.addFragment(abilityFragment)
+        pagerAdapter.addFragment(aboutFragment)
+        pagerAdapter.addFragment(movesFragment)
+        pagerAdapter.addFragment(statsFragment)
+
+        viewPager.adapter = pagerAdapter
 
         val selectedPokemonName = intent.getStringExtra("pokemonName")
 
@@ -57,7 +61,7 @@ class NewPokemonActivity : AppCompatActivity() {
         }
 
         pokemonName.text = selectedPokemonName
-        viewPager.adapter = adapter
+
 
         viewPager.setCurrentItem(0,false)
 
@@ -73,27 +77,21 @@ class NewPokemonActivity : AppCompatActivity() {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 val fragment = when (position) {
-                    0 -> AboutFragment()
-                    1 -> AbilityFragment()
-                    2 -> MovesFragment()
-                    3 -> StatsFragment()
+                    0 -> aboutFragment
+                    1 -> abilityFragment
+                    2 -> movesFragment
+                    3 -> statsFragment
                     else -> throw IllegalArgumentException("Invalid fragment position: $position")
                 }
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit()
+
             }
         })
 
-
     }
-
-
     private fun fetchPokemonDetails(pokemonName: String) {
         val disposable = PokemonRepository.getPokemonDetails(pokemonName)
             .subscribe(
                 { pokemonDetails ->
-
                     displayPokemonDetails(pokemonDetails)
                 },
                 { error ->
@@ -101,7 +99,6 @@ class NewPokemonActivity : AppCompatActivity() {
                 }
             )
         compositeDisposable.add(disposable)
-
     }
 
     private fun showErrorToast() {

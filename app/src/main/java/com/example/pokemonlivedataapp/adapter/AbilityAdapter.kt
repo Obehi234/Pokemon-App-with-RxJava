@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonlivedataapp.R
 import com.example.pokemonlivedataapp.model.details.Ability
 
-class AbilityAdapter(val abilityList: List<Ability>):
+class AbilityAdapter(var abilityList: List<Ability>):
 RecyclerView.Adapter<AbilityAdapter.ViewHolder>(){
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
