@@ -1,13 +1,13 @@
 package com.example.pokemonlivedataapp.adapter
 
-import com.example.pokemonlivedataapp.R
-import com.example.pokemonlivedataapp.model.details.Move
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pokemonlivedataapp.R
+import com.example.pokemonlivedataapp.model.details.Move
 
 
 class MovesAdapter(var moveList: List<Move>) : RecyclerView.Adapter<MovesAdapter.ViewHolder>()  {
@@ -28,7 +28,7 @@ class MovesAdapter(var moveList: List<Move>) : RecyclerView.Adapter<MovesAdapter
 
     private fun getRandomColor(): Int {
         val cardColors = arrayOf("#072AC8", "#EEC8E0", "#60D394")
-        val randomIndex = (0 until cardColors.size).random()
+        val randomIndex = (cardColors.indices).random()
         return Color.parseColor(cardColors[randomIndex])
     }
 
@@ -42,6 +42,5 @@ class MovesAdapter(var moveList: List<Move>) : RecyclerView.Adapter<MovesAdapter
     fun updateData(newList: List<Move>) {
         moveList = newList
         notifyDataSetChanged()
-
     }
 }

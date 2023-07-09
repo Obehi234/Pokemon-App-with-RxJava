@@ -8,21 +8,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonlivedataapp.R
+import com.example.pokemonlivedataapp.activities.DataListener
 import com.example.pokemonlivedataapp.adapter.FormsRecyclerAdapter
 import com.example.pokemonlivedataapp.adapter.SpeciesAdapter
 import com.example.pokemonlivedataapp.model.PokemonResponse
+import com.example.pokemonlivedataapp.model.details.Ability
 import com.example.pokemonlivedataapp.model.details.Form
 import com.example.pokemonlivedataapp.model.details.PokemonDetails
 import com.example.pokemonlivedataapp.model.details.Species
 import com.example.pokemonlivedataapp.repository.PokemonRepository.getPokemonDetails
 
-class AboutFragment : Fragment() {
+class AboutFragment : Fragment(), DataListener {
    private lateinit var formsRecyclerView: RecyclerView
    private lateinit var speciesRecyclerView: RecyclerView
    private lateinit var formsAdapter: FormsRecyclerAdapter
    private lateinit var speciesAdapter: SpeciesAdapter
 
-   private val formsList = mutableListOf<Form>()
+   private lateinit var formsList: List<Form>
    private val speciesList = mutableListOf<Species>()
 
     override fun onCreateView(
@@ -46,12 +48,11 @@ class AboutFragment : Fragment() {
 
         formsRecyclerView.adapter = formsAdapter
         speciesRecyclerView.adapter = speciesAdapter
-
-
     }
 
-
-
+    override fun sendDataToFragment(data: PokemonDetails) {
+        formsList = data.forms
+    }
 
 
 }

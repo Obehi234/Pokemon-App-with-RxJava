@@ -1,5 +1,6 @@
 package com.example.pokemonlivedataapp.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +11,12 @@ import com.example.pokemonlivedataapp.model.details.Ability
 
 class AbilityAdapter(var abilityList: List<Ability>):
 RecyclerView.Adapter<AbilityAdapter.ViewHolder>(){
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val abilityName: TextView = itemView.findViewById(R.id.formName)
+        private val abilityName: TextView = itemView.findViewById(R.id.formName)
 
-        fun bind(ability : Ability) {
+        fun bind(ability: Ability) {
             abilityName.text = ability.ability.name
+            Log.d("CheckData", " bind ${abilityList}")
         }
     }
 
@@ -27,13 +28,21 @@ RecyclerView.Adapter<AbilityAdapter.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(abilityList[position])
+        Log.d("CheckData", " onBindViewHolder ${abilityList}")
     }
 
-    override fun getItemCount(): Int = abilityList.size
+    override fun getItemCount(): Int {
+        Log.d("CheckData", " size ${abilityList.size}")
+        return abilityList.size
+    }
     fun updateData(newList: List<Ability>) {
         abilityList = newList
+        Log.d("CheckData", " abilityList ${abilityList}")
+        Log.d("CheckData", " newList ${newList}")
+
         notifyDataSetChanged()
 
+        Log.d("CheckData", "notifyDataSetChanged called")
     }
 
 }
