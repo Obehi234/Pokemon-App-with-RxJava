@@ -1,18 +1,19 @@
 package com.example.pokemonlivedataapp.activities
 
 
+import AboutFragment
 import android.os.Bundle
-import android.util.Log
+
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
+
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.pokemonlivedataapp.R
 import com.example.pokemonlivedataapp.fragment.*
-import com.example.pokemonlivedataapp.model.details.Ability
+
 import com.example.pokemonlivedataapp.model.details.PokemonDetails
 import com.example.pokemonlivedataapp.repository.PokemonRepository
 import com.example.pokemonlivedataapp.viewpager.MyViewPagerAdapter
@@ -30,7 +31,7 @@ class NewPokemonActivity : AppCompatActivity() {
     private lateinit var pokemonNumber: TextView
 
     private var abilityFragment = AbilityFragment()
-    private val aboutFragment = AboutFragment()
+    private var aboutFragment = AboutFragment()
     private var movesFragment = MovesFragment()
     private var statsFragment = StatsFragment()
 
@@ -79,6 +80,7 @@ class NewPokemonActivity : AppCompatActivity() {
         }.attach()
     }
 
+    //Perform Network Call
     private fun fetchPokemonDetails(pokemonName: String) {
         val disposable = PokemonRepository.getPokemonDetails(pokemonName)
             .subscribe(
@@ -96,6 +98,7 @@ class NewPokemonActivity : AppCompatActivity() {
         Toast.makeText(this, "Failed to fetch Pokemon details", Toast.LENGTH_LONG).show()
     }
 
+    //New Activity Logic
     private fun displayPokemonDetails(pokemonDetails: PokemonDetails?) {
         pokemonDetails?.let { details ->
             val pokemonImage = details.sprites.back_default
@@ -107,6 +110,9 @@ class NewPokemonActivity : AppCompatActivity() {
             //send pokemon details to respective fragments
             abilityFragment.sendDataToFragment(pokemonDetails)
             movesFragment.sendDataToFragment(pokemonDetails)
+            statsFragment.sendDataToFragment(pokemonDetails)
+            aboutFragment.sendDataToFragment(pokemonDetails)
+
         }
     }
 

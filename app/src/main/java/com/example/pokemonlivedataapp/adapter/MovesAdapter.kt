@@ -18,19 +18,12 @@ class MovesAdapter(var moveList: List<Move>) : RecyclerView.Adapter<MovesAdapter
             moveName.text = move.move.name
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.forms_recycler_item, parent, false)
-        val viewHolder = ViewHolder(itemView)
-        viewHolder.itemView.background.setTint(getRandomColor())
-        return viewHolder
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.forms_recycler_item, parent, false)
+        return ViewHolder(itemView)
     }
 
-    private fun getRandomColor(): Int {
-        val cardColors = arrayOf("#072AC8", "#EEC8E0", "#60D394")
-        val randomIndex = (cardColors.indices).random()
-        return Color.parseColor(cardColors[randomIndex])
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val move = moveList[position]

@@ -11,20 +11,20 @@ import io.reactivex.schedulers.Schedulers
 
 object PokemonRepository {
 
-    private val apiService : ApiService
+    private val apiService: ApiService
 
     init {
         val retrofit = RetrofitInstance.getInstance()
         apiService = retrofit.create(ApiService::class.java)
     }
 
-    fun getPokemonData() : Observable<PokemonResponse> {
+    fun getPokemonData(): Observable<PokemonResponse> {
         return apiService.getPokemon()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun getPokemonDetails(name: String) : Observable<PokemonDetails>{
+    fun getPokemonDetails(name: String): Observable<PokemonDetails> {
         return apiService.getPokemonDetails(name)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

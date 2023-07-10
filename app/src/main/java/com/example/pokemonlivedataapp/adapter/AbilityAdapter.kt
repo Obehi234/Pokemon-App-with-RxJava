@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonlivedataapp.R
 import com.example.pokemonlivedataapp.model.details.Ability
 
-class AbilityAdapter(var abilityList: List<Ability>):
-RecyclerView.Adapter<AbilityAdapter.ViewHolder>(){
+class AbilityAdapter(var abilityList: List<Ability>) :
+    RecyclerView.Adapter<AbilityAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val abilityName: TextView = itemView.findViewById(R.id.formName)
 
         fun bind(ability: Ability) {
             abilityName.text = ability.ability.name
-            Log.d("CheckData", " bind ${abilityList}")
+            Log.d("CheckData", " bind $abilityList")
         }
     }
 
@@ -28,17 +28,18 @@ RecyclerView.Adapter<AbilityAdapter.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(abilityList[position])
-        Log.d("CheckData", " onBindViewHolder ${abilityList}")
+        Log.d("CheckData", " onBindViewHolder $abilityList")
     }
 
     override fun getItemCount(): Int {
         Log.d("CheckData", " size ${abilityList.size}")
         return abilityList.size
     }
+
     fun updateData(newList: List<Ability>) {
         abilityList = newList
-        Log.d("CheckData", " abilityList ${abilityList}")
-        Log.d("CheckData", " newList ${newList}")
+        Log.d("CheckData", " abilityList $abilityList")
+        Log.d("CheckData", " newList $newList")
 
         notifyDataSetChanged()
 

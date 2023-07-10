@@ -1,58 +1,35 @@
-package com.example.pokemonlivedataapp.fragment
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonlivedataapp.R
 import com.example.pokemonlivedataapp.activities.DataListener
 import com.example.pokemonlivedataapp.adapter.FormsRecyclerAdapter
-import com.example.pokemonlivedataapp.adapter.SpeciesAdapter
-import com.example.pokemonlivedataapp.model.PokemonResponse
-import com.example.pokemonlivedataapp.model.details.Ability
-import com.example.pokemonlivedataapp.model.details.Form
 import com.example.pokemonlivedataapp.model.details.PokemonDetails
-import com.example.pokemonlivedataapp.model.details.Species
-import com.example.pokemonlivedataapp.repository.PokemonRepository.getPokemonDetails
+import com.example.pokemonlivedataapp.model.details.Type
 
 class AboutFragment : Fragment(), DataListener {
-   private lateinit var formsRecyclerView: RecyclerView
-   private lateinit var speciesRecyclerView: RecyclerView
-   private lateinit var formsAdapter: FormsRecyclerAdapter
-   private lateinit var speciesAdapter: SpeciesAdapter
-
-   private lateinit var formsList: List<Form>
-   private val speciesList = mutableListOf<Species>()
+    private lateinit var formsAdapter: FormsRecyclerAdapter
+    private var formsList: List<Type> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_about, container, false)
-
-        formsRecyclerView = rootView.findViewById(R.id.rvForms)
-        speciesRecyclerView = rootView.findViewById(R.id.rvSpecies)
-        return rootView
+        return inflater.inflate(R.layout.fragment_about, container, false)
     }
 
-    fun setData(formsList: List<Form>, speciesList: List<Species>) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val formsRecycler: RecyclerView = view.findViewById(R.id.rvForms)
         formsAdapter = FormsRecyclerAdapter(formsList)
-        speciesAdapter = SpeciesAdapter(speciesList)
-
-        formsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-        speciesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-
-        formsRecyclerView.adapter = formsAdapter
-        speciesRecyclerView.adapter = speciesAdapter
+        formsRecycler.adapter = formsAdapter
     }
 
     override fun sendDataToFragment(data: PokemonDetails) {
-        formsList = data.forms
+        formsList = data.types
+        formsAdapter.updateData(formsList)
     }
-
-
 }

@@ -31,10 +31,8 @@ class AbilityFragment: Fragment(), DataListener {
             Log.d("CheckData", "${e.message}")
         }
 
-
         Log.d("CheckData", "pokemonDetails $pokemonAbilities")
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

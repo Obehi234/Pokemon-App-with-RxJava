@@ -1,41 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginEnd="@dimen/margin_12dp"
-    app:cardCornerRadius="@dimen/radius_7dp"
-    android:elevation="@dimen/elevation_2dp"
+    android:layout_width="@dimen/width_150dp"
+    android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/margin_2dp"
+    android:layout_marginEnd="@dimen/margin_12dp"
     android:layout_marginBottom="@dimen/margin_6dp"
-    android:layout_height="wrap_content">
+    android:elevation="@dimen/elevation_2dp"
+    app:cardCornerRadius="@dimen/radius_7dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/padding_12dp"
-        android:paddingEnd="@dimen/padding_15dp">
-
-        <ImageView
-            android:id="@+id/pokemonFormImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/pokemon"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/formName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_17dp"
-            android:textSize="@dimen/text_size_20sp"
-            android:text="Form Name"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/margin_20dp"
             android:layout_marginBottom="@dimen/margin_20dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/form_name"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pokemonFormImage" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

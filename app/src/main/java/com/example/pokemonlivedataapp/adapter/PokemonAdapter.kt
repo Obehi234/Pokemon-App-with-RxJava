@@ -14,7 +14,8 @@ import com.example.pokemonlivedataapp.model.Result
 
 class PokemonAdapter(
     private var pokemonList: List<Result>,
-    private val onItemClick: (Result)-> Unit):RecyclerView.Adapter<PokemonAdapter.ViewHolder>()  {
+    private val onItemClick: (Result) -> Unit
+) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val pokemonImage: ImageView = itemView.findViewById(R.id.move_image)
@@ -40,7 +41,7 @@ class PokemonAdapter(
         init {
             itemView.setOnClickListener {
                 val position = adapterPosition
-                if(position != RecyclerView.NO_POSITION) {
+                if (position != RecyclerView.NO_POSITION) {
                     val clickedPokemon = pokemonList[position]
                     onItemClick(clickedPokemon)
                 }
@@ -64,7 +65,7 @@ class PokemonAdapter(
         holder.bind(pokemon)
     }
 
-    override fun getItemCount(): Int= pokemonList.size
+    override fun getItemCount(): Int = pokemonList.size
 
     fun updateData(newList: List<Result>) {
         pokemonList = newList

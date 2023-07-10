@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#FF5722">
+    android:background="#4CAF50">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvStats"

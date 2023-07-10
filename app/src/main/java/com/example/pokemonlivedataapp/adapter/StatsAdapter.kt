@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonlivedataapp.R
 import com.example.pokemonlivedataapp.model.details.Stat
 
-class StatsAdapter(var statsList: List<Stat>):
-RecyclerView.Adapter<StatsAdapter.StatsViewHolder>(){
+class StatsAdapter(var statsList: List<Stat>) :
+    RecyclerView.Adapter<StatsAdapter.StatsViewHolder>() {
 
     inner class StatsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val statsName : TextView = itemView.findViewById(R.id.formName)
+        val statsName: TextView = itemView.findViewById(R.id.formName)
 
         fun bind(stat: Stat) {
             statsName.text = stat.stat.name

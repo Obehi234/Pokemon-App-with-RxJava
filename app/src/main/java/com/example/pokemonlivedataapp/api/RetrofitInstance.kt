@@ -37,7 +37,7 @@ object RetrofitInstance {
 
     }
 
-    fun getPokemonData() : Observable<PokemonResponse> {
+    fun getPokemonData(): Observable<PokemonResponse> {
         val retrofit = getInstance()
         val apiService = retrofit.create(ApiService::class.java)
 

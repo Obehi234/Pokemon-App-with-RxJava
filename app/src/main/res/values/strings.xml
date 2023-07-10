@@ -13,4 +13,9 @@
     <string name="pokemon_icon">Pokemon Icon</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_internet">NO INTERNET</string>
+    <string name="internet_icon">No Internet icon</string>
+    <string name="who_are_you_nlooking_for">Who are you\nlooking for?</string>
+    <string name="search_widget">search_widget</string>
+    <string name="form_name">Form Name</string>
 </resources>
